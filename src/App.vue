@@ -1,26 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="window-container" v-for="windowedComponent in windowedComponents" :key="windowedComponent.component">
+    <NewWindow v-if="windowedComponent.isActive" :windowedComponent="windowedComponent">
+      <component :is="windowedComponent.component">
+      </component>
+    </NewWindow>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NewWindow from "./components/NewWindow.vue"
+import Terminal from "./views/Terminal.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NewWindow,
+    Terminal,
+  },
+  data() {
+    return {
+      windowedComponents: [
+        {
+          // COMPONENT NAME
+          component: "Terminal",
+
+          // CSS VALUES
+          top:"30vh",
+          left:"60vw",
+          height:"50vh",
+          width:"50vw",
+
+          // BOOLEANS
+          isActive: true,
+          browser: false,
+
+
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @font-face {
+      font-family: "cascadiaCode";
+      src: url("./fonts/CascadiaCode.ttf");
+  }
+
+  html, body {
+    padding:0;
+    margin:0;
+  }
 </style>
