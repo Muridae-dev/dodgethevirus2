@@ -1,4 +1,9 @@
 <template>
+
+  <div class="thumbnail" v-for="(windowedComponent, index) in windowedComponents" :key="index">
+    <img :src="require('./assets/icons/' + windowedComponent.thumbnail)" />
+  </div>
+
   <div class="window-container" v-for="windowedComponent in windowedComponents" :key="windowedComponent.component">
     <NewWindow v-if="windowedComponent.isActive" :windowedComponent="windowedComponent">
       <component :is="windowedComponent.component">
@@ -21,8 +26,10 @@ export default {
     return {
       windowedComponents: [
         {
-          // COMPONENT NAME
+          // COMPONENT INFO
           component: "Terminal",
+          thumbnail: "terminal.svg",
+
 
           // CSS VALUES
           top:"30vh",
@@ -55,5 +62,11 @@ export default {
 
   body {
     background:black;
+  }
+
+  .thumbnail {
+    height:100px;
+    width:100px;
+    background:white;
   }
 </style>

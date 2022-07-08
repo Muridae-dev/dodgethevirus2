@@ -1,10 +1,11 @@
 <template>
-    <section class="new-window" 
+    <section class="new-window"
+    ref="sectionContainer"
     :class="{fullscreen: fullscreen}"
     :style="[{top: windowedComponent.top, left: windowedComponent.left},
     fullscreen ? {top: '50vh', left: '50vw'} : {height: windowedComponent.height, width: windowedComponent.width, top: windowedComponent.top, left: windowedComponent.left}]">
         
-        <header>
+        <header @mousedown="!fullscreen && dragMouseDown($event)">
             {{windowedComponent.component}}
             <button class="close-x" @click="windowedComponent.isActive = false">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
@@ -32,7 +33,38 @@ export default {
     data() {
         return {
             fullscreen: false,
+
+            // FOR DRAG
+            positions: {
+                clientX: undefined,
+                clientY: undefined,
+                movementX: 0,
+                movementY: 0
+            }
         }
+    },
+    methods: {
+        // -------------------- DRAG FUNCTIONS --------------------
+        dragMouseDown: function(e) {
+            e.preventDefault();
+            this.positions.clientX = e.clientX;
+            this.positions.clientY = e.clientY;
+            document.onmousemove = this.startDrag;
+            document.onmouseup = this.stopDrag;
+        },
+        startDrag: function(e) {
+            this.positions.movementX = this.positions.clientX - e.clientX;
+            this.positions.movementY = this.positions.clientY - e.clientY;
+            this.positions.clientX = e.clientX;
+            this.positions.clientY = e.clientY;
+            this.$refs.sectionContainer.style.top = (this.$refs.sectionContainer.offsetTop - this.positions.movementY) + "px";
+            this.$refs.sectionContainer.style.left = (this.$refs.sectionContainer.offsetLeft - this.positions.movementX) + "px";
+        },
+        stopDrag() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+        // --------------------      END       --------------------
     }
 }
 </script>
@@ -43,12 +75,13 @@ export default {
         position:absolute;
         transform:translate(-50%, -50%);
         border:3px solid rgb(49, 49, 49);
-        transition: width 1s, height 1s, top 1s, left 1s;
+        transition: width 1s, height 1s;
     }
 
     .fullscreen {
         height:calc(100% - 6px);
         width:calc(100% - 6px);
+        transition: top 1s, left 1s, width 1s, height 1s;
     }
 
     header {
@@ -56,6 +89,7 @@ export default {
         border-bottom: 3px solid rgb(49, 49, 49);
         color:white;
         text-align: center;
+        font-family:cascadiaCode;
     }
 
     nav {
