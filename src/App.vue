@@ -46,7 +46,7 @@ export default {
       ],
       windowedComponents: [
         {
-          // COMPONENT NAME
+          // COMPONENT INFO
           component: "Terminal",
           name: "Terminal",
 
@@ -170,5 +170,11 @@ export default {
 
   .thumbnail-for {
     z-index:1;
+  }
+
+  .thumbnail {
+    height:100px;
+    width:100px;
+    background:white;
   }
 </style>
