@@ -20,8 +20,10 @@
             </div>
         </nav>
 
-        <slot>
-        </slot>
+        <div class="component-container">
+            <slot>
+            </slot>
+        </div>
     </section>
 </template>
 
@@ -44,6 +46,13 @@ export default {
         transform:translate(-50%, -50%);
         border:3px solid rgb(49, 49, 49);
         transition: width 1s, height 1s, top 1s, left 1s;
+        overflow-y: scroll;
+    }
+
+    .component-container {
+        position:relative;
+        width:100%;
+        height:calc(100% - 72px);
     }
 
     .fullscreen {
@@ -52,6 +61,7 @@ export default {
     }
 
     header {
+        position:relative;
         height:15px;
         border-bottom: 3px solid rgb(49, 49, 49);
         color:white;
@@ -60,7 +70,7 @@ export default {
 
     nav {
         position: relative;
-        border-bottom: 3px solid white;
+        border-bottom:  3px solid rgb(49, 49, 49);
         width:100%;
         height:50px;
     }
@@ -70,7 +80,7 @@ export default {
         width:80%;
         font-size:2em;
 
-        position:absolute;
+        position:relative;
         top:50%;
         left:5px;
         transform:translateY(-50%);
