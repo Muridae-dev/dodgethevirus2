@@ -1,9 +1,9 @@
 <template>
     <div class="biggie-container">
-        <img :src="require('../assets/biggie/biggieBackground.jpeg')" class="background-image" alt="background image"/>
+        <img :src="require('./images/biggieBackground.jpeg')" class="background-image" alt="background image"/>
 
         <div class="biggie-face">
-            <img src="../assets/mascots/biggie.png" />
+            <img src="../mascots/biggie.png" />
         </div>
 
         <div class="song-container" v-for="(songArray, index) in songsArray" :key="index" 
@@ -51,7 +51,7 @@ export default {
     },
     methods: {
         playSong(songSrc) {
-            this.song = new Audio(require(`../assets/biggie/${songSrc}`));
+            this.song = new Audio(require(`./songs/${songSrc}`));
             this.song.play();
         }
     },
@@ -60,9 +60,14 @@ export default {
 
 <style>
     .biggie-container {
-        height:calc(100% - 72px);
+        height:100%;
         width:100%;
         position:relative;
+
+        font-family:AldoApache;
+        font-size:2em;
+        color:white;
+        text-shadow: 2px 2px black;
     }
 
     .biggie-face {
@@ -78,9 +83,10 @@ export default {
     .song-container {
         position:absolute;
         transform:translate(-50%,-50%);
-        width:100px;
-        height:50px;
-        background:blue;
+        width:auto;
+        height:auto;
+        background:rgba(0, 0, 0, 0.8);
+        padding:0.5em;
         text-align:center;
 
     }

@@ -21,7 +21,7 @@
             </div>
         </nav>
 
-        <div class="component-container">
+        <div class="component-container" id="style-4">
             <slot>
             </slot>
         </div>
@@ -71,20 +71,45 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    $border-color: rgb(0, 177, 231);
+
+    #style-4::-webkit-scrollbar-track
+    {
+        border-radius:10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: black;
+        
+    }
+
+    #style-4::-webkit-scrollbar
+    {
+        width: 10px;
+        background-color: blue;
+    }
+
+    #style-4::-webkit-scrollbar-thumb
+    {
+        background-color: $border-color;
+        border: 2px solid $border-color;
+    }
+
+
     .new-window {
-        background:black;
+        background:rgb(0, 18, 24) ;
         position:absolute;
         transform:translate(-50%, -50%);
-        border:3px solid rgb(49, 49, 49);
+        border:3px solid $border-color;
         transition: width 1s, height 1s, top 1s, left 1s;
-        overflow-y: scroll;
+        overflow-y: hidden;
     }
 
     .component-container {
         position:relative;
         width:100%;
-        height:calc(100% - 72px);
+        height:calc(100% - 52px);
+        overflow-y:auto;
     }
 
     .fullscreen {
@@ -94,31 +119,37 @@ export default {
     }
 
     header {
-        position:relative;
+        position:sticky;
+        top:0;
         height:15px;
-        border-bottom: 3px solid rgb(49, 49, 49);
+        width:100%;
+        border-bottom: 3px solid $border-color;
         color:white;
         text-align: center;
         font-family:cascadiaCode;
+        z-index:2;
     }
 
     nav {
-        position: relative;
-        border-bottom:  3px solid rgb(49, 49, 49);
+        position: sticky;
+        top:15px;
+        border-bottom:  3px solid $border-color;
         width:100%;
-        height:50px;
+        height:30px;
+        font-family:cascadiaCode;
+        z-index:1;
     }
 
     .url-container {
-        height:40px;
+        height:30px;
         width:80%;
-        font-size:2em;
+        font-size:1.5em;
 
         position:relative;
         top:50%;
         left:5px;
         transform:translateY(-50%);
-        border:1px solid black;
+        
     }
 
     button {

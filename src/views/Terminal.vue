@@ -10,6 +10,19 @@
 </template>
 
 <script>
+/* 
+  UPCOMING FEATURES:
+    cd ./dragonslair
+        - sort()
+            This sorts the questions by website name
+        - bribe(amount)
+            This is only usable when there are over 1/3 of questions left
+            Per 1000 credits, removes 1 question
+
+        CHEATS:
+            - reduce()
+                This reduces the questions by half
+*/
 export default {
     name: "Terminal",
     data() {
@@ -45,7 +58,7 @@ export default {
 
 <style scoped>
     .terminal-container {
-        height:calc(100% - 53px);
+        height:100%;
         width:100%;
         background:black;
         color:rgb(0, 255, 65);

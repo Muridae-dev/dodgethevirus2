@@ -2,12 +2,21 @@
     <section class="murky-container">
         <div class="murky-background-container" v-for="(background, index) in backgrounds" :key="index">
             <img :src="background.src" class="murky-background-image" :style="{'z-index': index}"/>
+            
         </div>
 
-        <StaticBackground staticProfile="Murky"/>
+        <StaticBackground staticProfile="Murky" />
+
+        <MurkyStore :storeActive="storeActive"/>
 
         <div class="murky-main-title">
             MURKYS <br/>RAFT
+        </div>
+
+        <div class="murky-menu">
+            <a @click="storeActive = !storeActive">STORE</a><br/>
+            <a>RANDOM FISH</a><br/>
+            <a>ABOUT</a>
         </div>
         <article>
             Global leader in distribution of fish
@@ -16,19 +25,23 @@
 </template>
 
 <script>
-import StaticBackground from "../components/StaticBackground.vue"
+import StaticBackground from "../../components/StaticBackground.vue"
+import MurkyStore from "./MurkyStore.vue"
 
 export default {
     components: {
         StaticBackground,
+        MurkyStore,
     },
+    props: ["updateInventory"],
     data() {
         return {
             backgrounds: [],
+            storeActive: false,
         }
     },
     async created() {
-        this.backgrounds = await this.importAll(require.context('../assets/murky/backgrounds', false, /\.(png|jpe?g|svg)$/))
+        this.backgrounds = await this.importAll(require.context('./backgrounds', false, /\.(png|jpe?g|svg)$/))
     },
     methods: {
         importAll(r) {
@@ -36,23 +49,31 @@ export default {
             r.keys().forEach((background) => {
                 backgroundsTemp[background.replace('./', '')] = r(background);
             });
-            let backgroundsArray = Object.keys(backgroundsTemp).map(background => {let img = new Image(); img.src = require('../assets/murky/backgrounds/' + background); return img;})
+            let backgroundsArray = Object.keys(backgroundsTemp).map(background => {let img = new Image(); img.src = require('./backgrounds/' + background); return img;})
 
             return backgroundsArray
         },
+
+        pushFish() {
+            console.log(this.player)
+            //this.player.inventory.push("fishName")
+        }
     }
 }
 </script>
 
+<style lang="scss" scoped>
+
+</style>
+
 <style scoped>
     .murky-container {
-        height:calc(100% - 72px);
+        height:100%;
         width:100%;
         position:relative;
         font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         overflow-y:hidden;
-        
-
+    
     }
 
     .murky-main-title {
@@ -64,6 +85,18 @@ export default {
         
     }
 
+    .murky-menu {
+        width:20%;
+        font-size:2em;
+        font-style: italic;
+        text-decoration: underline;
+
+        position:absolute;
+        bottom:20%;
+        line-height: 2em;
+        left:80%;
+    }
+
     .murky-background-container {
         position:absolute;
         top:0;
@@ -71,6 +104,7 @@ export default {
         width:100%;
         height:100%;
         z-index:-1;
+        filter: hue-rotate(-10deg);
     }
 
     .murky-background-image {

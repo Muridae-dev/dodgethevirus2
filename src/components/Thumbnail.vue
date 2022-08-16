@@ -19,7 +19,8 @@ export default {
         text-align: center;
         position: absolute;
         background:rgba(0, 255, 157, 0.253);
-        font-family:cascadiaCode;
+        font-family:kaOne;
+        color:black;
         transform:translateX(-50%);
     }
 

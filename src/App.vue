@@ -6,7 +6,7 @@
 
     <div class="window-container" v-for="windowedComponent in windowedComponents" :key="windowedComponent.component">
       <NewWindow v-if="windowedComponent.isActive" :windowedComponent="windowedComponent">
-        <component :is="windowedComponent.component">
+        <component :is="windowedComponent.component" :updateInventory="updateInventory">
         </component>
       </NewWindow>
     </div>
@@ -14,14 +14,33 @@
 </template>
 
 <script>
+/* 
+  GENERAL CONCEPTS:
+    - Final boss battle
+      You will have to use the items/party members you have assembled to beat the final boss
+
+      Party members include:
+        - Fish (murky)
+
+      Buffs include:
+        - Phat tunes (Biggie)
+        - Burgers (Big Kahuna Burger)
+
+    
+    - Mini-games to make money
+      These could be:
+        - Blackjack
+        - Space invaders
+        - Type words fast
+*/
 import NewWindow from "./components/NewWindow.vue"
 import Thumbnail from "./components/Thumbnail.vue"
 
 import Terminal from "./views/Terminal.vue"
-import Biggie from "./views/Biggie.vue"
-import Murky from "./views/Murkys.vue"
+import Biggie from "./assets/biggie/Biggie.vue"
+import Murky from "./assets/murky/Murkys.vue"
 import Unknown from "./views/Unknown.vue"
-import KahunaBurger from "./views/KahunaBurger.vue"
+import KahunaBurger from "./assets/kahuna/KahunaBurger.vue"
 
 export default {
   name: 'App',
@@ -36,11 +55,11 @@ export default {
   },
   data() {
     return {
+      inventory: [],
       player: [
         {
           name: "",
-          health: "",
-          virus: "",
+          health: 10,
           money: 0,
         }
       ],
@@ -142,15 +161,104 @@ export default {
 
       ]
     }
-  }
+  },
+  methods: {
+    updateInventory(item) {
+      console.log(item);
+      this.inventory.push(item)
+      console.log(this.inventory)
+    }
+  },
 }
 </script>
 
 <style>
   @font-face {
-      font-family: "cascadiaCode";
-      src: url("./fonts/CascadiaCode.ttf");
+    font-family: "cascadiaCode";
+    src: url("./fonts/CascadiaCode.ttf");
   }
+
+  @font-face {
+    font-family: "oneUp";
+    src: url("./fonts/1up.ttf");
+  }
+
+  @font-face {
+    font-family: "Isometric";
+    src: url("./fonts/3DIsometric-Regular.ttf");
+  }
+
+  @font-face {    
+    font-family: "Agero";
+    src: url("./fonts/agero.ttf");
+  }
+
+  @font-face {
+    font-family: "AldoApache";
+    src: url("./fonts/AldotheApache.ttf");
+  }
+
+  @font-face {
+    font-family: "Blackout";
+    src: url("./fonts/BLACKOUT.TTF");
+
+  }
+
+  @font-face {
+    font-family: "Boneapa";
+    src: url("./fonts/BONEAPA.TTF");
+  }
+
+  @font-face {
+    font-family: "Dagestan";
+    src: url("./fonts/Dagestan.ttf");
+  }
+
+  @font-face {
+    font-family: "FippsRegular";
+    src: url("./fonts/Fipps-Regular.otf");
+  }
+
+  @font-face {
+    font-family: "kaOne";
+    src: url("./fonts/ka1.ttf");
+  }
+
+  @font-face {
+    font-family: "Square";
+    src: url("./fonts/Square.ttf");
+  }
+
+  @font-face {
+    font-family: "Squareo";
+    src: url("./fonts/Squareo.ttf");
+  }
+
+  @font-face {
+    font-family: "SuperMario";
+    src: url("./fonts/SuperMario256.ttf");
+  }
+
+  @font-face {
+    font-family:"RobotoBlack";
+    src: url("./fonts/Roboto-Black.ttf");
+  }
+
+  @font-face {
+    font-family:"RussoOne";
+    src: url("./fonts/RussoOne-Regular.ttf");
+  }
+
+  @font-face {
+    font-family:"Ubuntu";
+    src: url("./fonts/Ubuntu-Regular.ttf");
+  }
+
+  @font-face {
+    font-family:"BreeSerif";
+    src: url("./fonts/BreeSerif-Regular.ttf");
+  }
+  
 
   html, body {
     padding:0;
@@ -161,7 +269,27 @@ export default {
     z-index:0;
     background:black;
     color:white;
+    font-family:Dagestan;
   }
+
+  body::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: black;
+  }
+
+  body::-webkit-scrollbar
+  {
+      width: 10px;
+      background-color: blue;
+  }
+
+  body::-webkit-scrollbar-thumb
+  {
+      background-color: rgb(4, 255, 150);
+      border: 2px solid rgb(4, 255, 150);
+  }
+
 
   .main-container {
     height:100vh;
@@ -170,6 +298,7 @@ export default {
 
   .thumbnail-for {
     z-index:1;
+    font-family:Dagestan;
   }
 
   .thumbnail {

@@ -15,7 +15,7 @@ export default {
 <style scoped>
     .main-container {
         width:100%;
-        height:calc(100% - 72px);
+        height:100%;
         background:rgb(1, 15, 32);
         position:relative;
     }
