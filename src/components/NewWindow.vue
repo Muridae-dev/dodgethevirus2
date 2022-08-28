@@ -5,7 +5,7 @@
     :style="[{top: windowedComponent.top, left: windowedComponent.left},
     fullscreen ? {top: '50vh', left: '50vw'} : {height: windowedComponent.height, width: windowedComponent.width, top: windowedComponent.top, left: windowedComponent.left}]">
         
-        <header @mousedown="!fullscreen && dragMouseDown($event)">
+        <!--<header @mousedown="!fullscreen && dragMouseDown($event)">
             {{windowedComponent.component}}
             <button class="close-x" @click="windowedComponent.isActive = false">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
@@ -13,15 +13,24 @@
             <button class="fullscreen-btn" @click="fullscreen = !fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Resize</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M304 96h112v112M405.77 106.2L111.98 400.02M208 416H96V304"/></svg>
             </button>
-        </header>
+        </header>-->
 
         <nav v-if="windowedComponent.browser">
             <div class="url-container">
                 www.{{windowedComponent.component}}.com/
+
+                <button class="close-x" @click="windowedComponent.isActive = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
+                </button>
+                <button class="fullscreen-btn" @click="fullscreen = !fullscreen">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Resize</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M304 96h112v112M405.77 106.2L111.98 400.02M208 416H96V304"/></svg>
+                </button>
             </div>
+
+
         </nav>
 
-        <div class="component-container" id="style-4">
+        <div class="component-container" :id="`component-container-${windowedComponent.component}`" ref="componentContainer">
             <slot>
             </slot>
         </div>
@@ -73,9 +82,9 @@ export default {
 
 <style lang="scss" scoped>
 
-    $border-color: rgb(0, 177, 231);
+    $border-color: rgb(195, 231, 255);
 
-    #style-4::-webkit-scrollbar-track
+    .component-container::-webkit-scrollbar-track
     {
         border-radius:10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -83,13 +92,13 @@ export default {
         
     }
 
-    #style-4::-webkit-scrollbar
+    .component-container::-webkit-scrollbar
     {
         width: 10px;
-        background-color: blue;
+        background-color: rgb(0, 0, 0);
     }
 
-    #style-4::-webkit-scrollbar-thumb
+    .component-container::-webkit-scrollbar-thumb
     {
         background-color: $border-color;
         border: 2px solid $border-color;
@@ -97,84 +106,75 @@ export default {
 
 
     .new-window {
-        background:rgb(0, 18, 24) ;
+        background:black ;
         position:absolute;
         transform:translate(-50%, -50%);
-        border:3px solid $border-color;
+        border-radius:5px;
         transition: width 1s, height 1s, top 1s, left 1s;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     .component-container {
         position:relative;
         width:100%;
-        height:calc(100% - 52px);
-        overflow-y:auto;
+        height:calc(100% - 31px);
+        overflow-y:scroll;
     }
 
     .fullscreen {
-        height:calc(100% - 6px);
+        height:calc(100%);
         width:calc(100% - 6px);
         transition: top 1s, left 1s, width 1s, height 1s;
     }
 
-    header {
-        position:sticky;
-        top:0;
-        height:15px;
-        width:100%;
-        border-bottom: 3px solid $border-color;
-        color:white;
-        text-align: center;
-        font-family:cascadiaCode;
-        z-index:2;
-    }
-
     nav {
         position: sticky;
-        top:15px;
-        border-bottom:  3px solid $border-color;
+        top:0px;
         width:100%;
         height:30px;
-        font-family:cascadiaCode;
-        z-index:1;
+        font-family:RussoOne;
+        z-index:99;
     }
 
     .url-container {
         height:30px;
-        width:80%;
+        width:calc(100% - 5px);
         font-size:1.5em;
 
         position:relative;
-        top:50%;
+        top:0;
         left:5px;
-        transform:translateY(-50%);
+        overflow-x:hidden;  
         
     }
 
     button {
         position:relative;
         float:right;
-        height:15px;
-        width:15px;
+        height:50%;
+        width:auto;
         border:none;
-        border-radius:50%;
-        margin-right:5px;
+        cursor: pointer;
     }
 
     .fullscreen-btn {
-        background:blue;
+        background:black;
+        right:45px;
+        top:7%;
+        transform:translateY(-50%) scale(1.7);
     }
 
     .close-x {
-        background:red;
+        background:black;
+        right:30px;
+        transform:translateY(-50%) scale(2);
     }
 
     svg {
         position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%) scale(3);
+        width:auto;
+        height:100%;
+        color:white;
     }
 
 </style>

@@ -90,6 +90,7 @@ export default {
         font-size:2em;
         font-style: italic;
         text-decoration: underline;
+        z-index:1;
 
         position:absolute;
         bottom:20%;
@@ -117,5 +118,9 @@ export default {
         position:absolute;
         bottom:10px;
         left:10px;
+    }
+
+    a {
+        cursor:pointer;
     }
 </style>

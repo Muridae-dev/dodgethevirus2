@@ -6,6 +6,16 @@
             <img :src="require('../assets/statics/static3.gif')"/>
         </div>
 
+        <!----------------------------- HEMPFARMS PROFILE ----------------------------->
+        <div v-if="staticProfile == 'HempFarm'" class="static-background-container" style="background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%);">
+            <!--<img :src="require('../assets/statics/static15.gif')" style="opacity:0.1; z-index:0; height:100vh; position:fixed;"/>-->
+            <div class="vhs-filter">
+                <img :src="require('../assets/statics/static15.gif')" class="vhs-filter__r" style="opacity:0.02; z-index:0; height:100vh; position:fixed;"/>
+                <img :src="require('../assets/statics/static15.gif')" class="vhs-filter__g" style="opacity:0.02; z-index:0; height:100vh; position:fixed;"/>
+                <img :src="require('../assets/statics/static15.gif')" class="vhs-filter__b" style="opacity:0.02; z-index:0; height:100vh; position:fixed;"/>
+            </div>
+        </div>
+
 
         
     </div>

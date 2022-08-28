@@ -296,6 +296,13 @@ export default {
         height:100%;
         float:left;
 
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content:center;
+        justify-content: center;
+        gap:7%;
+
         border-left:2px solid black;
         background:$background-color;
 
@@ -303,7 +310,6 @@ export default {
             height:auto;
             width:100%;
             text-align: center;
-            padding-top:100px;
         
 
             img {
@@ -317,10 +323,10 @@ export default {
 
         .fish-portrait-description {
             width:70%;
+            height:auto;
             color:black;
             text-align:center;
             margin:auto;
-            margin-top:50px;
             border:3px solid black;
             box-shadow: 10px 10px black;
             padding:10px;

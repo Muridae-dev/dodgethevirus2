@@ -22,6 +22,7 @@ export default {
         font-family:kaOne;
         color:black;
         transform:translateX(-50%);
+        cursor:pointer;
     }
 
     img {

@@ -1,5 +1,11 @@
 <template>
   <div class="main-container">
+    <div class="video-container">
+      <video muted preload="metadata" autoplay="true">
+        <source :src="require(`./assets/videos/VHSTape.mp4`)" type="video/mp4">
+      </video>
+    </div>
+
     <div class="thumbnail-for" v-for="(windowedComponent, index) in windowedComponents" :key="index">
       <Thumbnail :windowedComponent="windowedComponent" :index="index" />
     </div>
@@ -41,6 +47,7 @@ import Biggie from "./assets/biggie/Biggie.vue"
 import Murky from "./assets/murky/Murkys.vue"
 import Unknown from "./views/Unknown.vue"
 import KahunaBurger from "./assets/kahuna/KahunaBurger.vue"
+import HempFarm from "./assets/hempfarm/HempFarm.vue"
 
 export default {
   name: 'App',
@@ -51,7 +58,8 @@ export default {
     Biggie,
     Murky,
     Unknown,
-    KahunaBurger
+    KahunaBurger,
+    HempFarm
   },
   data() {
     return {
@@ -159,14 +167,26 @@ export default {
           browser: true,
         },
 
+        {
+          // COMPONENT NAME
+          component: "HempFarm",
+          name: "Hemp Farm",
+
+          // THUMBNAIL
+          imgSrc: "thumbnails/samLjackson.jpeg",
+
+          // CSS VALUES
+          top:"50vh",
+          left:"50vw",
+          height:"90vh",
+          width:"90vw",
+
+          // BOOLEANS
+          isActive: false,
+          browser: true,
+        }
+
       ]
-    }
-  },
-  methods: {
-    updateInventory(item) {
-      console.log(item);
-      this.inventory.push(item)
-      console.log(this.inventory)
     }
   },
 }
@@ -258,8 +278,9 @@ export default {
     font-family:"BreeSerif";
     src: url("./fonts/BreeSerif-Regular.ttf");
   }
-  
+</style>
 
+<style lang="scss">
   html, body {
     padding:0;
     margin:0;
@@ -281,7 +302,7 @@ export default {
   body::-webkit-scrollbar
   {
       width: 10px;
-      background-color: blue;
+      background-color: black;
   }
 
   body::-webkit-scrollbar-thumb
@@ -294,6 +315,26 @@ export default {
   .main-container {
     height:100vh;
     width:100vw;
+    position:relative;
+  }
+
+  .video-container {
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow:hidden;
+    opacity:0.2;
+
+    video {
+      position:absolute;
+      height:auto;
+      width:100%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+    }
   }
 
   .thumbnail-for {
@@ -306,4 +347,5 @@ export default {
     width:100px;
     background:white;
   }
+  
 </style>
