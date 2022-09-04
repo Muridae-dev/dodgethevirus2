@@ -1,9 +1,9 @@
 <template>
   <div class="main-container">
     <div class="video-container">
-      <video muted preload="metadata" autoplay="true">
+      <!--<video muted preload="metadata" autoplay="true">
         <source :src="require(`./assets/videos/VHSTape.mp4`)" type="video/mp4">
-      </video>
+      </video>-->
     </div>
 
     <div class="thumbnail-for" v-for="(windowedComponent, index) in windowedComponents" :key="index">
