@@ -50,7 +50,7 @@
         </div>
 
         <div class="hemp-eneftes-container">
-            <EneftesGallery1 folderLink="../assets/hempfarm/images/AI-Images/" />
+            <EneftesGallery1 :galleryObject="galleryImages" baseUrl="../assets/hempfarm/images/AI-Images/" />
         </div>
 
         <!--<div class="ground-container">
@@ -78,6 +78,33 @@ export default {
     data() {
         return {
             scrollValue: 0,
+            galleryImages: [
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp6.png'),
+                    price: "1000"
+                },
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp7.png'),
+                    price: "1000"
+                },
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp8.png'),
+                    price: "1000"
+                },
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp9.png'),
+                    price: "1000"
+                },
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp10.png'),
+                    price: "1000"
+                },
+                {
+                    imgSrc: require('./images/AI-Images/holyHemp5.png'),
+                    price: "1000"
+                },
+
+            ]
         }
         
     },

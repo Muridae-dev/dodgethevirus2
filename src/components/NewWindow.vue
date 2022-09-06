@@ -134,6 +134,7 @@ export default {
         height:30px;
         font-family:RussoOne;
         z-index:99;
+        background: black;
     }
 
     .url-container {

@@ -278,6 +278,26 @@ export default {
     font-family:"BreeSerif";
     src: url("./fonts/BreeSerif-Regular.ttf");
   }
+
+  @font-face {
+    font-family:"PhonkContrast";
+    src: url("./fonts/PhonkContrast.otf");
+  }
+
+  @font-face {
+    font-family:"PhonkRegular";
+    src: url("./fonts/PhonkRegular.otf");
+  }
+
+  @font-face {
+    font-family:"madeOkineSans";
+    src: url("./fonts/madeOkineSans.otf");
+  }
+
+  @font-face {
+    font-family:"Glusp";
+    src: url("./fonts/glusp.ttf");
+  }
 </style>
 
 <style lang="scss">
@@ -288,7 +308,7 @@ export default {
 
   body {
     z-index:0;
-    background:black;
+    background:rgb(17, 0, 101);
     color:white;
     font-family:Dagestan;
   }
